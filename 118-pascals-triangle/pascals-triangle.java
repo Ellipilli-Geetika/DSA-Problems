@@ -5,12 +5,13 @@ class Solution {
         for(int i = 0; i<numRows ; i++)
         {
             List<Integer> l = new ArrayList<Integer>(i);
-            for(int j=0;j<=i;j++)
+            int sum =1;
+            l.add(sum);
+            for(int j=1;j<=i;j++)
             {
-                if(j==0 || j==i)
-                    l.add(j,1);
-                else 
-                    l.add(j,arr.get(i-1).get(j-1)+arr.get(i-1).get(j));
+                sum = sum * (i+1-j);
+                sum = sum/j;
+                l.add(sum);
             }
             arr.add(i,l);
         }
