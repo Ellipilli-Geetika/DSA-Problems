@@ -1,6 +1,5 @@
 class Solution {
     public void rotate(int[][] matrix) {
-        int[][] m  = new int[matrix.length][matrix[0].length];
 
         for(int i = 0; i < matrix[0].length ; i++)
         {
