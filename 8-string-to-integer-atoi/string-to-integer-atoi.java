@@ -2,42 +2,37 @@ class Solution {
     public int myAtoi(String s) {
         StringBuilder sb = new StringBuilder();
         s = s.trim();
-        boolean digitFound = false;
-        boolean signFound = false;
-        for(int i = 0 ; i < s.length(); i ++)
+        long result = 0 ;
+        int sign = 1, i=0;
+        if(s.length()==0)
+            return 0;
+
+        if(s.charAt(0)=='-')
+        {   sign = -1;
+            i++;
+        }else if(s.charAt(0)=='+')
         {
-            if(!digitFound && !signFound && (s.charAt(i)=='-' || s.charAt(i)=='+'))
-            {
-                sb.append(Character.toString(s.charAt(i)));
-                signFound = true;
-            }
+            sign = 1;
+            i++;
+        }
+       
+        while(i<s.length())
+        {
             
-            else if(!digitFound && s.charAt(i)=='0')
+           if(!Character.isDigit(s.charAt(i)))
             {
-                digitFound = true;
-                continue;
-            }
-            else if(Character.isDigit(s.charAt(i)))
-            {
-                digitFound = true;
-                sb.append(Character.toString(s.charAt(i)));
-            }
-            else
-            {
-                
                 break;
             }
+            result = result*10 + (s.charAt(i)-'0');
+            if(sign * result > Integer.MAX_VALUE)
+                return Integer.MAX_VALUE;
+            if(sign * result < Integer.MIN_VALUE)
+                return Integer.MIN_VALUE;
+            i++;
+              
         }
         
-          if (sb.length() == 0 || sb.toString().equals("+") || sb.toString().equals("-")) {
-            return 0;
-        }
-        
-         try {
-            return Integer.parseInt(sb.toString());
-        } catch (NumberFormatException e) {
-            return sb.charAt(0) == '-' ? Integer.MIN_VALUE : Integer.MAX_VALUE;
-        }
+        return (int) (sign*result);
         
     }
 }
