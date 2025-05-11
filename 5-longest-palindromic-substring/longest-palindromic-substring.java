@@ -7,7 +7,7 @@ class Solution {
         {
             for(int j = i ; j < s.length() ; j++)
             {
-                if(isPalindrome(s.substring(i,j+1)))
+                if(maxLen < j-i+1 && isPalindrome(s.substring(i,j+1)))
                 {
                     if(maxLen < (j-i+1))
                     {
