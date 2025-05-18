@@ -12,23 +12,20 @@ class Solution {
     public boolean isPalindrome(ListNode head) {
         if(head.next == null )
             return true;
-        HashMap<Integer,Integer> map = new HashMap<>();
+        Stack<Integer> s = new Stack<>();
         ListNode temp = head;
-        int count = 0;
         while(temp != null)
         {
-            count++;
-            map.put(count,temp.val);
+            s.push(temp.val);
             temp = temp.next;
         }
+        temp = head;
         
-        int i=1,j = count;
-        while(i <= j)
+        for(int i =0 ; i < s.size(); i++)
         {
-            if(map.get(i)!=map.get(j))
+            if(temp.val != s.pop())
                 return false;
-            i++;
-            j--;
+            temp = temp.next;
         }
         return true;
 
