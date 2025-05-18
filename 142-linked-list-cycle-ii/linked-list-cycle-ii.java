@@ -14,15 +14,32 @@ public class Solution {
 
         if( head == null || head.next == null)
             return null;
-        HashSet<ListNode> map = new HashSet<>();
-        ListNode temp = head;
-        while(temp != null)
+        ListNode slow = head;
+        ListNode fast = head;
+        boolean found = false;
+
+        while(fast != null && fast.next != null)
         {
-            if(map.contains(temp))
-                return temp;
-            map.add(temp);
-            temp = temp.next;
-        }
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast)
+            {
+                found = true;
+                break;
+            }
+        } 
+        if(found)     
+        {
+            slow = head;
+            while(slow != null)
+            {
+                
+                if(slow == fast)
+                    return slow;
+                slow = slow.next;
+                fast = fast.next;
+            }
+        } 
         return null;
     }
 } 
