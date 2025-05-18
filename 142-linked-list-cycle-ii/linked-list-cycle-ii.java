@@ -14,14 +14,13 @@ public class Solution {
 
         if( head == null || head.next == null)
             return null;
-        HashMap<ListNode,Integer> map = new HashMap<>();
+        HashSet<ListNode> map = new HashSet<>();
         ListNode temp = head;
-        int count =0;
         while(temp != null)
         {
-            if(map.containsKey(temp))
+            if(map.contains(temp))
                 return temp;
-            map.put(temp,count);
+            map.add(temp);
             temp = temp.next;
         }
         return null;
