@@ -20,19 +20,8 @@ class Solution {
             fast = fast.next.next;
             
         }
-        ListNode prevNode = null;
-        ListNode temp = slow;
-
-        while(temp != null)
-        {
-            ListNode nextNode = temp.next;
-            temp.next = prevNode;
-            prevNode = temp;
-            temp = nextNode;
-
-        }
         ListNode Node1 = head;
-        ListNode Node2 = prevNode;
+        ListNode Node2 = reverseList(slow);
 
         while(Node1 != null && Node2 != null)
         {
@@ -45,6 +34,23 @@ class Solution {
 
 
         
+
+        
+    }
+
+    public ListNode reverseList(ListNode head) {
+        
+        if(head==null || head.next == null)
+            return head;
+        ListNode headNode = reverseList(head.next);
+        ListNode front = head.next;
+        front.next = head;
+        head.next = null;
+
+
+        
+        return headNode;
+
 
         
     }
