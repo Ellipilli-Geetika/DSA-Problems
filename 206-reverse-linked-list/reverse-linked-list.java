@@ -13,19 +13,14 @@ class Solution {
         
         if(head==null || head.next == null)
             return head;
-        ListNode prevNode = null;
-        ListNode temp = head;
+        ListNode headNode = reverseList(head.next);
+        ListNode front = head.next;
+        front.next = head;
+        head.next = null;
 
-        while(temp != null)
-        {
-            ListNode nextNode = temp.next;
-            temp.next = prevNode;
-            prevNode = temp;
-            temp = nextNode;
 
-        }
         
-        return prevNode;
+        return headNode;
 
 
         
