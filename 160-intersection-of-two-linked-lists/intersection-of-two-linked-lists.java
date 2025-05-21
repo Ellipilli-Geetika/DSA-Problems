@@ -13,26 +13,51 @@ public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
 
         ListNode temp1 = headA, temp2 = headB;
-        HashSet<ListNode> set = new HashSet<>();
+        int count1 = 0,count2 =0;
         while(temp1 != null || temp2  != null)
         {
-            if(temp1 != null)
+            if(temp1 != null && temp2!=null)
             {
-                if(set.contains(temp1))
-                    return temp1;
-                set.add(temp1);
                 temp1 = temp1.next;
+                temp2 = temp2.next;
                 
             }
-            if(temp2 != null)
+            else if(temp1 != null)
             {
-                if(set.contains(temp2))
-                    return temp2;
-                set.add(temp2);
+                temp1 = temp1.next;
+                count1++;
+            }
+            else
+            {
+                count2++;
                 temp2 = temp2.next;
             }
         }
-        return null;
+        if(temp1!=temp2)
+            return null;
+        temp1 = headA;
+        temp2 = headB;
         
+        if(count1>count2)
+            while(count1!=0)
+            {
+                temp1 = temp1.next;
+                count1--;
+            }
+        if(count1<count2)
+            while(count2!=0)
+            {
+                temp2 = temp2.next;
+                count2--;
+            }
+        while(temp1 != null || temp2  != null)
+        {
+            if(temp1==temp2)
+                return temp1;
+            temp1 = temp1.next;
+            temp2 = temp2.next;
+        }
+        return null;
     }
+    
 }
