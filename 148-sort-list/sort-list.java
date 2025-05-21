@@ -48,7 +48,7 @@ class Solution {
                 result.next = temp1;
                 temp1 = temp1.next;
             }
-            else if(temp1.val > temp2.val)
+            else
             {
                 result.next = temp2;
                 temp2 = temp2.next;
