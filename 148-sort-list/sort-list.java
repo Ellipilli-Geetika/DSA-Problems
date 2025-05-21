@@ -61,18 +61,14 @@ class Solution {
             result = result.next;
         }
 
-        while(temp1!=null)
+        if(temp1!=null)
         {
             result.next = temp1;
-            temp1 = temp1.next;
-            result = result.next;
 
         }
-        while(temp2!=null)
+        if(temp2!=null)
         {
             result.next = temp2;
-            temp2 = temp2.next;
-            result = result.next;
 
         }
         return l.next;
