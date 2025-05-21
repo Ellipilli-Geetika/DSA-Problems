@@ -10,7 +10,14 @@
  */
 class Solution {
     public ListNode sortList(ListNode head) {
-        return mergesort(head);
+        if(head == null || head.next == null)
+            return head;
+        ListNode mid = findMiddle(head);
+        ListNode right = mid.next;
+        mid.next = null;
+        ListNode left = sortList(head);
+        right = sortList(right);
+        return sort(left,right);
         
     }
 
@@ -25,18 +32,6 @@ class Solution {
             fast = fast.next.next;
         }
         return slow;
-    }
-
-    public ListNode  mergesort(ListNode head)
-    {
-        if(head == null || head.next == null)
-            return head;
-        ListNode mid = findMiddle(head);
-        ListNode right = mid.next;
-        mid.next = null;
-        ListNode left = mergesort(head);
-        right = mergesort(right);
-        return sort(left,right);
     }
 
     public ListNode sort(ListNode left,ListNode right)
