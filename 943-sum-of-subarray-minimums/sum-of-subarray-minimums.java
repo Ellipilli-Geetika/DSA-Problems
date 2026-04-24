@@ -1,37 +1,36 @@
 class Solution {
     public int sumSubarrayMins(int[] arr) {
         int n = arr.length;
-        Stack<int[]> lmin = new Stack<>();
-        Stack<int[]> rmin = new Stack<>();
+        Stack<Integer> lmin = new Stack<>();
+        Stack<Integer> rmin = new Stack<>();
         int[] l = new int[arr.length];
         int[] r = new int[arr.length];
 
         for(int i = 0; i < n ; i++)
         {
-            while(!lmin.isEmpty() && arr[i] <= lmin.peek()[0])
+            while(!lmin.isEmpty() && arr[i] <= arr[lmin.peek()])
             {
                 lmin.pop();
             }
             if(lmin.isEmpty())
                 l[i] = -1;
             else
-                l[i]= lmin.peek()[1];
-            lmin.push(new int[]{arr[i],i});
+                l[i]= lmin.peek();
+            lmin.push(i);
                 
         }
-        System.out.println("l"+Arrays.toString(l));
 
         for(int i = n-1; i >=0 ; i--)
         {
-            while(!rmin.isEmpty() && arr[i] < rmin.peek()[0])
+            while(!rmin.isEmpty() && arr[i] < arr[rmin.peek()])
             {
                 rmin.pop();
             }
             if(rmin.isEmpty())
                 r[i] = n;
             else
-                r[i]= rmin.peek()[1];
-            rmin.push(new int[]{arr[i],i});
+                r[i]= rmin.peek();
+            rmin.push(i);
                 
         }
         long sum = 0;
