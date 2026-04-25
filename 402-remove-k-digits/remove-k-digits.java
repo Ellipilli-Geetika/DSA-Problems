@@ -18,20 +18,19 @@ class Solution {
             st.pop();
             k--;
         }
-        String s = "";
-
+        StringBuilder s = new StringBuilder();
         while(!st.isEmpty())
         {
-            s += Character.toString(st.peek());
-            st.pop();
+            s.append(st.pop());
         }
-        String str = "";
-        for(int i = s.length()-1; i >=0 ; i--)
-        {
-            if(str.isEmpty() && s.charAt(i)=='0')
-                continue;
-            str += Character.toString(s.charAt(i));
-        }
+
+        s.reverse();
+
+        int  i = 0;
+        while(i < s.length() && s.charAt(i) == '0')
+            i++;
+        String str = s.substring(i);
+
         return str.isEmpty()?"0":str;
     }
 }
